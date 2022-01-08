@@ -3,18 +3,81 @@
 
 <head>
   <title>Home Page</title>
-
+  <!-- App CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
+  <!-- App JS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
-  <h1>Have fun! 🥔</h1>
+  <nav>
+    <a href="#" class="left-side">Login/Logout</a>
+    <h1 class="nav center">Smart To-Do List</h1>
+    <a href="#" class="right-side">Register</a>
+  </nav>
+  <div class="search-box">
+    <form action="#" method="POST">
+      <img>
+      <span id="search-value">What do you need to do?</span>
+    </form>
+  </div>
+  <!-- Main To-Do -->
+  <div class="todo-box">
+    <!-- Title -->
+    <h2 class="center">Summer Vacation</h2>
+    <img>
+    <!-- Food-->
+    <div class="category-box food">
+    <h3 class="box-name">Food</h3>
+      <div class="item">
+        <input type="checkbox">
+        <span>Item value</span>
+        <img>
+      </div>
+    </div>
+    <!-- Books -->
+    <div class="category-box books">
+    <h3 class="box-name">Books</h3>
+      <div class="item">
+        <input type="checkbox">
+        <span>Item value</span>
+        <img>
+      </div>
+    </div>
+    <!-- Film -->
+    <div>
+      <h3 class="box-name">Film</h3>
+      <div class="item">
+        <input type="checkbox">
+        <span>Item value</span>
+        <img>
+      </div>
+    </div>
+    <!-- Products-->
+    <div>
+      <h3 class="box-name">Products</h3>
+      <div class="item">
+        <input type="checkbox">
+        <span>Item value</span>
+        <img>
+      </div>
+    </div>
+  </div>
+    <!-- Custom list -->
+  <div class="todo-box footer">
+  <h3 class="box-name">Custom List</h3>
+    <div class="item">
+      <input type="checkbox">
+      <span>Item value</span>
+      <img>
+    </div>
+  </div>
+
 </body>
 
 </html>
