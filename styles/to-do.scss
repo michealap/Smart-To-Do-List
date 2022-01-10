@@ -46,6 +46,8 @@ $other: url(../thinkbubble.jpg);
       height: 100%;
       background-size: cover;
       border-radius: 10px;  
+      transition: opacity 1.5s;
+      z-index: 1;
     }
     &.food {
       .bg {
@@ -65,17 +67,20 @@ $other: url(../thinkbubble.jpg);
     &.products {
       .bg {
       background-image: $products;
+      
       }
     }
     &:hover {
       .bg {
-        transition: 1.5s ease-in-out;
-        opacity: 0.1;
+        opacity: 0;
+        z-index: 0;
       }
       h3 {
+        position: relative;
         visibility:visible;
       }
       .item {
+        position: relative;
         visibility:visible;        
       }    
     } 
