@@ -1,4 +1,4 @@
-$font-stack: Salsa;
+$font-stack: Salsa, Raleway;
 $primary-color: #DBD9CA;
 $nav-color: #F5B308;
 
@@ -10,13 +10,4 @@ body {
   font: 100% $font-stack;
 
   background: #E5E5E5;
-  // background: linear-gradient(
-  //   227deg,
-  //   rgba(163, 208, 219, 1) 0%,
-  //   rgb(148, 154, 173) 20%,
-  //   rgb(76, 79, 92) 34%,
-  //   rgb(211, 219, 163) 59%,
-  //   rgb(223, 221, 106) 74%,
-  //   rgb(215, 219, 163) 100%
-  // );
 }

@@ -11,7 +11,9 @@
   <link rel="stylesheet" href="/styles/search-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/to-do.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
   <link href="http://fonts.cdnfonts.com/css/salsa" rel="stylesheet">
+  <link href="http://fonts.cdnfonts.com/css/raleway-5" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -29,8 +31,12 @@
   </nav>
   <div class="search-box">
     <form id="search-form" action="#" method="POST">
-      <i class="fas fa-search-plus"></i>
-      <span id="search-value">What do you need to do?</span>
+      <div id="input-group">
+      <input type="text" id="search" placeholder="What do you need to do?">
+      <button type="submit" id="button">
+        <i class="fas fa-search-plus"></i>
+      </button>
+    </div>
     </form>
   </div>
   <!-- Main To-Do -->
@@ -92,7 +98,13 @@
       </div>
     </div>
   </div>
-
+  <footer class= "footer">
+    <span class="copyright">&copy; 2022
+    <i class="far fa-thumbs-up"></i>
+    <i class="fab fa-twitter"></i>
+    <i class="fas fa-share"></i>
+  </span>
+  </footer>
 
 </body>
 
