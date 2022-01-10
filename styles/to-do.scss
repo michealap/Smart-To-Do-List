@@ -69,16 +69,14 @@ $other: url(../thinkbubble.jpg);
     }
     &:hover {
       .bg {
-      opacity: 0.1;
-      z-index: 30;
+        transition: 1.5s ease-in-out;
+        opacity: 0.1;
       }
       h3 {
         visibility:visible;
-        z-index: 100;
       }
       .item {
-        visibility:visible;
-        z-index: 100;
+        visibility:visible;        
       }    
     } 
   }
