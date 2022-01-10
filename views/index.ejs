@@ -2,12 +2,25 @@
 <html lang="en">
 
 <head>
+<<<<<<< HEAD
   <title>Home Page</title>
+=======
+  <title>Home page</title>
+>>>>>>> 08a0807bad674f012ed6da7e14d9613c6e867a20
   <!-- App CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/search-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/to-do.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
+  <link href="http://fonts.cdnfonts.com/css/salsa" rel="stylesheet">
+  <link href="http://fonts.cdnfonts.com/css/raleway-5" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- App JS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -16,6 +29,7 @@
 
 <body>
   <nav>
+<<<<<<< HEAD
     <a href="#" class="left-side">Login/Logout</a>
     <h1 class="nav center">Smart To-Do List</h1>
     <a href="#" class="right-side">Register</a>
@@ -24,11 +38,26 @@
     <form action="#" method="POST">
       <img>
       <span id="search-value">What do you need to do?</span>
+=======
+    <a href="#" class="left-side"><i class="fas fa-user"></i></a>
+    <h1 class="nav center">Smart To-Do List</h1>
+    <a href="#" class="right-side"><i class="fas fa-user-plus"></i></a>
+  </nav>
+  <div class="search-box">
+    <form id="search-form" action="#" method="POST">
+      <div id="input-group">
+      <input type="text" id="search" placeholder="What do you need to do?">
+      <button type="submit" id="button">
+        <i class="fas fa-search-plus"></i>
+      </button>
+    </div>
+>>>>>>> 08a0807bad674f012ed6da7e14d9613c6e867a20
     </form>
   </div>
   <!-- Main To-Do -->
   <div class="todo-box">
     <!-- Title -->
+<<<<<<< HEAD
     <h2 class="center">Summer Vacation</h2>
     <img>
     <!-- Food-->
@@ -61,6 +90,57 @@
     <!-- Products-->
     <div>
       <h3 class="box-name">Products</h3>
+=======
+    <div class="center">
+      <h2 class="center">Summer Vacation</h2>
+      <img>
+    </div>
+    <div class="to-do-container">
+      <!-- Food-->
+      <div class="category-box food">
+        <div class= "bg"> </div>
+        <h3 class="box-name">Food</h3>
+        <div class="item">
+          <input type="checkbox">
+          <span>Item value</span>
+          <img>
+        </div>
+      </div>
+      <!-- Books -->
+      <div class="category-box books">
+        <div class= "bg"> </div>
+        <h3 class="box-name">Books</h3>
+        <div class="item">
+          <input type="checkbox">
+          <span>Item value</span>
+          <img>
+        </div>
+      </div>
+      <!-- Film -->
+      <div class="category-box film">
+        <div class= "bg"> </div>
+        <h3 class="box-name">Film</h3>
+        <div class="item">
+          <input type="checkbox">
+          <span>Item value</span>
+          <img>
+        </div>
+      </div>
+      <!-- Products-->
+      <div class="category-box products">
+        <div class= "bg"> </div>
+        <h3 class="box-name">Products</h3>
+        <div class="item">
+          <input type="checkbox">
+          <span>Item value</span>
+          <img>
+        </div>
+      </div>
+    </div>
+    <!-- Custom list -->
+    <div class="custom-list">
+      <h3 class="box-name">Custom List</h3>
+>>>>>>> 08a0807bad674f012ed6da7e14d9613c6e867a20
       <div class="item">
         <input type="checkbox">
         <span>Item value</span>
@@ -68,6 +148,7 @@
       </div>
     </div>
   </div>
+<<<<<<< HEAD
     <!-- Custom list -->
   <div class="todo-box footer">
   <h3 class="box-name">Custom List</h3>
@@ -77,6 +158,16 @@
       <img>
     </div>
   </div>
+=======
+  <footer class= "footer">
+    <p class="copyright">&copy; 2022
+      <br/>
+    <i class="far fa-thumbs-up"></i>
+    <i class="fab fa-twitter"></i>
+    <i class="fas fa-share"></i>
+    </p>
+  </footer>
+>>>>>>> 08a0807bad674f012ed6da7e14d9613c6e867a20
 
 </body>
 

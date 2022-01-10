@@ -1,0 +1,35 @@
+.search-box {
+  top: 125px;
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  background: #DBD9CA;
+  #search-form {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-top: 25px;
+    font-size: 1.5em;
+  }
+  #search {
+    position: relative;
+    border: none;
+    width: 90%;
+    background: transparent;
+  }
+  #input-group {
+    display: flex;
+    justify-content: center;
+    border: black 1px solid;
+    border-radius: 5px;
+    width: 90%;
+  }
+  #button {
+    background: #DBD9CA;
+    border: none;
+    font-size: x-large;
+  }
+  #button:hover {
+    color: #F5B308;
+  }
+}

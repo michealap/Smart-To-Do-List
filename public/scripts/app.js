@@ -1,4 +1,5 @@
 // Client facing scripts here
+<<<<<<< HEAD
 const getAllQueries = function(user_id) {
   const booksArray = [];
   const filmArray = [];
@@ -59,4 +60,6 @@ $(document).ready(function() {
 })
 
 
+=======
+>>>>>>> 08a0807bad674f012ed6da7e14d9613c6e867a20
 

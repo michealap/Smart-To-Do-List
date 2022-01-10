@@ -1,0 +1,102 @@
+$restaurant: url(../rest.jpg);
+$books: url(../booksstack.jpg);
+$film: url(../film.png);
+$products: url(../products.jpg);
+$other: url(../thinkbubble.jpg);
+
+.todo-box {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: #DBD9CA;
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 180px;
+  margin-bottom: 100px;
+  padding-top: 20px;
+  .center {
+    align-items: center;
+    padding-bottom: 5px;
+  }
+  .to-do-container {
+    display: flex;
+    width: 90%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .category-box{
+    position: relative;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 20%;
+    h3 {
+      text-align: center;
+      visibility: hidden;
+    }
+    .item {
+      text-align: center;
+      visibility: hidden;
+      margin-bottom: 20px;
+    }
+    .bg {
+      position:absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      border-radius: 10px;  
+    }
+    &.food {
+      .bg {
+      background-image: $restaurant;
+      }
+    }
+    &.books {
+      .bg {
+      background-image: $books;
+      }
+    }
+    &.film {
+      .bg {
+      background-image: $film;
+      }
+    }
+    &.products {
+      .bg {
+      background-image: $products;
+      }
+    }
+    &:hover {
+      .bg {
+        transition: 1.5s ease-in-out;
+        opacity: 0.1;
+      }
+      h3 {
+        visibility:visible;
+      }
+      .item {
+        visibility:visible;        
+      }    
+    } 
+  }
+  .custom-list {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 90%;
+    background-image: $other;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position:right;
+    
+    h3 {
+      text-align: center;
+    }
+    .item {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  }
+}
