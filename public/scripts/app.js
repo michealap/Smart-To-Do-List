@@ -31,7 +31,32 @@ const getAllQueries = function(user_id) {
   .catch(err => console.error('query error', err.stack));
 }
 
+$(document).ready(function() {
+  $('.search-form').submit(function(event) {
+    event.preventDefault();
+    let value = $(this).children('#textarea').val();
+    $.ajax({
+      url: "/api/wolfram",
+      type: "POST",
+      data: $(this).serialize(),
+      success: function(data) {
+        console.log('Success! We did it!');
 
+      }
+    })
+    $(this).children("#textarea").val("");
+  })
+  const createToDoElement = function(value) {
+    const $toDo = $(`
+      <div class = "item">
+        <input  type="checkbox">
+        <span>${value}</span>
+        <img>
+      </div>
+    `);
+    return $toDo;
+  }
+})
 
 
 
