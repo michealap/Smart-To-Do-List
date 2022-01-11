@@ -18,7 +18,7 @@ const enlistItems = function(category, user_id) {
       return items;
     })
     .catch(err => {
-      console.log({ error: err.message });
+      console.log(err.message);
     })
 }
 //add a new Item to the category with respect to the user_id
