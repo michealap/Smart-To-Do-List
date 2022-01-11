@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { apiCalls } = require('../lib/apiCalls');
+const { apicalls } = require('../lib/apicalls');
 const { enlistItems, addNewItem } = require('./database');
 
 
@@ -42,11 +42,13 @@ module.exports = (db) => {
 
   router.post("/", (req, res) => {
     //item or input from the client-side
-    const item = req.body.item;
-    const id = req.params.id;
+    const item = req.body;
+    const id = req.params;
+    console.log("req.body.item-----",item)
+    console.log("id----",id)
     if (id) {
       //item to be added as a new item
-      apiCalls(item)
+      apicalls(item)
         .then((category) => {  //const addNewItem = function(category, item, user_id)
           addNewItem(category, item, id)
         })

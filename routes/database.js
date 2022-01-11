@@ -1,7 +1,4 @@
-const { Pool } = require("pg");
-const dbParams = require("./lib/db.js");
-const db = new Pool(dbParams);
-db.connect();
+const db = require('../db/dbSetUp')
 
 //enlist the items- grouping by the given category and user_id
 const enlistItems = function(category, user_id) {
