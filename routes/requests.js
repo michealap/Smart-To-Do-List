@@ -35,7 +35,7 @@ module.exports = (db) => {
     })
 
     router.post("/", (req, res) => {
-      const result = req.body;
+      const result = req.body.item;
       console.log(result)
       res.json({ result } )
     });
