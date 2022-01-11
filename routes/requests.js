@@ -20,7 +20,8 @@ module.exports = (db) => {
       const userId = req.params.id;
       console.log(userId);
       const queryString = `
-      SELECT * FROM queries WHERE user_id = $1;`;
+      SELECT * FROM queries WHERE user_id = $1;
+      `;
       db.query(queryString, [userId])
         .then((data)=>{
           const result = data.rows
