@@ -1,9 +1,5 @@
 const { Pool } = require("pg");
 
-
-
-
-
 const poolArray = [];
 const booksArray = [];
 const filmArray = [];
