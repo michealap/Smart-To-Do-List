@@ -1,26 +1,98 @@
 // Client facing scripts here
 (function($) {
   $(document).ready(() => {
-    $("#search").on('input', onInput);
-    $("#search-form").on('submit', onSubmit);
-   
+  //Value for input
+  const $value = $("#search");
+
+  //Loades items into the html document
+  const loadItems = () => {
+    $.ajax({
+      method: "GET",
+      url: "/requests",
+      success: (data) => {
+        renderItem(data);
+      },
+    });
+  };
+
+  //Creates new item elements
+  const createNewItem = function(query) {
+    const newItem = $(`<button type="submit" id=${query.id} class="delete">
+    <i class="far fa-trash-alt"></i></button>
+    <li>${query.item}
+    </li>`);
+    return newItem;
+  }
+
+  //Gets value for input and sends to /requests
+  $("#search").on('click', function(event) {
+    prevent.default();
+    const newData = { item: $value.val() };
+    if ($value.val().length > 0) {
+      $.ajax({
+        method: "POST",
+        url: "/requests",
+        data: newData,
+        success: function() {
+          //loadItems();
+          console.log($value);
+          $("#search").val('');
+        },
+        error: function(error) {
+          console.log("Error:", error);
+        }
+      });
+    } else {
+      console.log("You need to input something!");
+    }
   });
-  const onInput = function(event) {
-    let $input = $('#search');
-    console.log("you have reached here:", $input);
-  };
-  // here are my named functions
-    
-  const onSubmit = function(event) {
-    event.preventDefault();
-    let $form = $(this);
-    let $input = $form.find('input');
-    console.log("you have submitted:", $input);
-  };
-  // let formData = $form.serialize();
-  // $.post("/requests", formData)
-  //   .then(function(response) {
-  //     console.log("inside promise");
-  //   });
-  //you can define a function outside of document.ready
+
+
+
+  });
+
 })(jQuery);
+$(() => {
+  //eventListener on the search bar
+  const $value = $("#search");
+
+  $("#search").on('click', function(event) {
+    prevent.default();
+    const newData = { item: $value.val() };
+    if ($value.val().length > 0) {
+      $.ajax({
+        method: "POST",
+        url: "/requests",
+        data: newData,
+        success: function() {
+          //loadItems();
+          console.log($value);
+          $("#search").val('');
+        },
+        error: function(error) {
+          console.log("Error:", error);
+        }
+      });
+    } else {
+      console.log("You need to input something!");
+    }
+  });
+
+  const loadItems = () => {
+    $.ajax({
+      method: "GET",
+      url: "/requests",
+      success: (data) => {
+        renderItem(data);
+      },
+    });
+  };
+
+  const createNewItem = function(query) {
+    const newItem = $(`<button type="submit" id=${query.id} class="delete">
+    <i class="far fa-trash-alt"></i></button>
+    <li>${query.item}
+    </li>`);
+    return newItem;
+  }
+})
