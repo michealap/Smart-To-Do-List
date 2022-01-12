@@ -1,127 +1,118 @@
 // Client facing scripts here
 (function($) {
   $(document).ready(() => {
-  //Value for input
-  const $value = $("#search");
+    //Value for input
+    const $value = $("#search");
 
-  //Loades items into the html document
-  const loadItems = () => {
-    $.ajax({
-      method: "GET",
-      url: "/requests",
-      success: (data) => {
-        renderItem(data);
-      },
-    });
-  };
+    //Prevent cross site scripting attacks
+    const escape = function(str) {
+      let div = document.createElement("div");
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    };
+    
+    //Creates new item elements
+    const createNewItem = function(query) {
+      const $newItem = $(`
+      <li class="item">
+      <input type="checkbox">
+      <span>${escape(query.item)}
+      <button type="submit" class="delete" queryid="${query.id}>
+      <i class="far fa-trash-alt"></i>
+        </button>
+        </span>
+        <img>
+        </li>`);
+      return $newItem;
+    };
 
-  //Creates new item elements
-  const createNewItem = function(query) {
-    const newItem = $(`<button type="submit" id=${query.id} class="delete">
-    <i class="far fa-trash-alt"></i></button>
-    <li>${query.item}
-    </li>`);
-    return newItem;
-  }
-
-  const renderItems = (list) => {
-    $eating = $('.food');
-    $reading = $('.book');
-    $watching = $('.film');
-    $buying = $('.products');
-    $othering = $('.custom-list');
-
-    $eating.empty();
-    $reading.empty();
-    $watching.empty();
-    $buying.empty();
-    $othering.empty();
-
-    for (const item of list) {
-      if(item.category === 'food') {
-        $eating.append(createNewItem(item));
-      } else if (item.category === 'book') {
-        $reading.append(createNewItem(item));
-      } else if (item.category === 'film') {
-        $watching.append(createNewItem(item));
-      } else if (item.category === 'product') {
-        $buying.append(createNewItem(item));
-      } else {
-        $othering.append(createNewItem(item));
-      }
-    }
-  };
-
-  //Gets value for input and sends to /requests
-  $("#button").on('click', function(event) {
-    event.preventDefault();
-    const newData = { item: $value.val() };
-    console.log(newData.item);
-    if ($value.val().length > 0) {
+    //Loads items into the html document
+    const loadItems = () => {
       $.ajax({
-        method: "POST",
+        method: "GET",
         url: "/api/requests",
-        data: newData.item,
-        success: function() {
-          //loadItems();
-          console.log(newData.item);
-          $("#search").val('');
+        success: (data) => {
+          renderItems(data);
         },
-        error: function(error) {
-          console.log("Error:", error);
-        }
       });
-    } else {
-      console.log("You need to input something!");
-    }
-  });
-
-
-
-  });
-
-})(jQuery);
-$(() => {
-  //eventListener on the search bar
-  const $value = $("#search");
-
-  $("#search").on('click', function(event) {
-    prevent.default();
-    const newData = { item: $value.val() };
-    if ($value.val().length > 0) {
-      $.ajax({
-        method: "POST",
-        url: "/requests",
-        data: newData,
-        success: function() {
-          //loadItems();
-          console.log($value);
-          $("#search").val('');
-        },
-        error: function(error) {
-          console.log("Error:", error);
+    };
+    loadItems();
+    
+    const renderItems = (list) => {
+      // $allItems = $('.item');
+      $eating = $('.food');
+      $reading = $('.books');
+      $watching = $('.film');
+      $buying = $('.products');
+      $othering = $('.custom-list');
+      //reloads the category box
+      // $allItems.empty();
+      $reading.empty();
+      $watching.empty();
+      $buying.empty();
+      $othering.empty();
+      
+      for (const item of list) {
+        if (item.category === 'food') {
+          $eating.append(createNewItem(item));
+        } else if (item.category === 'book') {
+          $reading.append(createNewItem(item));
+        } else if (item.category === 'film') {
+          $watching.append(createNewItem(item));
+        } else if (item.category === 'product') {
+          $buying.append(createNewItem(item));
+        } else {
+          $othering.append(createNewItem(item));
         }
-      });
-    } else {
-      console.log("You need to input something!");
-    }
-  });
-
-  const loadItems = () => {
-    $.ajax({
-      method: "GET",
-      url: "/requests",
-      success: (data) => {
-        renderItem(data);
-      },
+      }
+    };
+    
+    //Gets value for input and sends to /requests - event listener
+    $("#search-icon").on('click', function(event) {
+      event.preventDefault();
+      const newData = { item: $value.val() };
+      // let data = $value.val();
+      console.log("user input:", newData);
+      if ($value.val().length > 0) {
+        $.ajax({
+          method: "POST",
+          url: "/api/requests",
+          data: newData,
+          success: function() {
+            console.log("inside ajax:", newData);
+          }
+        })
+          .then(loadItems);
+        $("#search").val('');
+      } else {
+        console.log("You need to input something!");
+      }
     });
-  };
 
-  const createNewItem = function(query) {
-    const newItem = $(`<button type="submit" id=${query.id} class="delete">
-    <i class="far fa-trash-alt"></i></button>
-    <li>${query.item}
-    </li>`);
-    return newItem;
-  }
-})
+    $(".item").on("click", ".delete", function(event) {
+      event.preventDefault();
+      const data = loadItems();
+    
+      $.ajax({
+        method: "DELETE",
+        url: `/api/requests/${$(this).attr("queryid")}`,
+        data: data,
+    
+        success: function() {
+          loadItems();
+        },
+        error: function(err) {
+          console.log("error:", err);
+        },
+      });
+    });
+  });
+
+  //strikethrough
+  $('.custom-list').change(function() {
+    if ($('.custom-list').prop('checked') ) {
+      $('#value').css('text-decoration','line-through');
+    }
+  });
+  
+})(jQuery);

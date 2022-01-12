@@ -8,8 +8,8 @@ module.exports = (db) => {
   //list of items
   router.get("/", (req, res) => {
     const user_id = 1; //hard-coded for a while-- should fetch id from req.params.id
-    //console.log('user_id', user_id)
-    const categories = ['food', 'book', 'film', 'product', 'other'];
+    const categories = ['food', 'books', 'films', 'products', 'others'];
+
     let sortedList = [];
     for (let category of categories) {
       sortedList.push(enlistItems(category, user_id));
@@ -47,8 +47,8 @@ module.exports = (db) => {
     //item or input from the client-side
     const item = req.body.item;
     const id = 1; //set to current db user 1
-    console.log("req.body.item-----", item);
-    console.log("id----", id);
+    console.log("req.body.item-----",item);
+    console.log("id----",id);
     if (id) {
       //item to be added as a new item
       apiCalls(item)
@@ -68,8 +68,8 @@ module.exports = (db) => {
       res.status(403);
     }
   });
-
-  //upadte category of the item
+  
+  //update category of the item
   router.post("/update", (req, res) => {
     const category = req.body.category;
     const id = req.body.id;
@@ -92,6 +92,5 @@ module.exports = (db) => {
         res.send(200)
       );
   });
-  
   return router;
 };
