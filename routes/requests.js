@@ -8,7 +8,7 @@ module.exports = (db) => {
   //list of items
   router.get("/", (req, res) => {
     const user_id = 1; //hard-coded for a while-- should fetch id from req.params.id
-    const categories = ['food', 'books', 'films', 'products', 'others'];
+    const categories = ['food', 'book', 'film', 'product', 'other'];
 
     let sortedList = [];
     for (let category of categories) {
@@ -82,7 +82,7 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-  })
+  });
 
   //delete the list
   router.post("/delete", (req, res) => {
