@@ -8,7 +8,7 @@ module.exports = (db) => {
   //list of items
   router.get("/", (req, res) => {
     const user_id = req.params.id;
-    const categories = ['restaurants', 'books', 'films', 'products', 'others'];
+    const categories = ['food', 'books', 'films', 'products', 'others'];
     let sortedList = [];
     for (let category of categories) {
       sortedList.push(enlistItems(category, user_id));
@@ -54,7 +54,7 @@ module.exports = (db) => {
           console.log("item added", category);
         })
         .then(() => {
-          res.send(200);
+          res.status(200);
         })
         .catch((err) => {
           res
@@ -64,6 +64,11 @@ module.exports = (db) => {
     } else {
       res.status(403);
     }
+  });
+  router.delete(`/:id`, (req, res) => {
+    const queryId = parseInt(req.params.id);
+    db.query(`DELETE FROM queries WHERE id = $1;`, [queryId]);
+    res.json("Your item has been deleted");
   });
 
   return router;
