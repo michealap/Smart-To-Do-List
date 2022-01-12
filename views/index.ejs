@@ -33,7 +33,7 @@
     <form id="search-form" action="/" method="POST">
       <div id="input-group">
       <input type="text" id="search" placeholder="What do you need to do?">
-      <button type="submit" id="button">
+      <button type="submit" id="search-icon">
         <i class="fas fa-search-plus"></i>
       </button>
     </div>
@@ -51,51 +51,71 @@
       <div class="category-box food">
         <div class= "bg"> </div>
         <h3 class="box-name">Food</h3>
-        <div class="item">
+        <li class="item">
           <input type="checkbox">
-          <span>Item value</span>
+          <span>Item value
+          <button type="submit" id=trash class="delete">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </span>
           <img>
-        </div>
+        </li>
       </div>
       <!-- Books -->
       <div class="category-box books">
         <div class= "bg"> </div>
         <h3 class="box-name">Books</h3>
-        <div class="item">
+        <li class="item">
           <input type="checkbox">
-          <span>Item value</span>
+          <span>Item value
+          <button type="submit" class="delete">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </span>
           <img>
-        </div>
+        </li>
       </div>
       <!-- Film -->
       <div class="category-box film">
         <div class= "bg"> </div>
         <h3 class="box-name">Film</h3>
-        <div class="item">
+        <li class="item">
           <input type="checkbox">
-          <span>Item value</span>
+          <span>Item value
+          <button type="submit" id=${query.id} class="delete">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </span>
           <img>
-        </div>
+        </li>
       </div>
       <!-- Products-->
       <div class="category-box products">
         <div class= "bg"> </div>
         <h3 class="box-name">Products</h3>
-        <div class="item">
+        <li class="item">
           <input type="checkbox">
-          <span id='product'>Item value</span>
+          <span id='product'>Item value
+          <button type="submit" id=${query.id} class="delete">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </span>
           <img>
-        </div>
+        </li>
       </div>
     </div>
     <!-- Custom list -->
     <div class="custom-list">
       <h3 class="box-name">Custom List</h3>
-      <div class="item">
-        <input type="checkbox">
-        <span>Item value</span>
+      <li class="item" class="checkbox">
+        <input type="checkbox" class="strikethrough">
+        <span><label id="value">Item value</label>
+        <button type="submit" id=${query.id} class="delete">
+          <i class="far fa-trash-alt"></i>
+        </button>
+      </span>
         <img>
-      </div>
+      </li>
     </div>
   </div>
   <footer class= "footer">
