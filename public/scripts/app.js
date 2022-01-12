@@ -26,7 +26,7 @@
 
   //Gets value for input and sends to /requests
   $("#search").on('click', function(event) {
-    prevent.default();
+    event.preventDefault();
     const newData = { item: $value.val() };
     if ($value.val().length > 0) {
       $.ajax({
