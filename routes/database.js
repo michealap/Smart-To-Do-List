@@ -1,4 +1,4 @@
-const db = require('../db/dbSetUp')
+const db = require('../db/dbSetUp');
 
 //enlist the items- grouping by the given category and user_id
 const enlistItems = function(category, user_id) {
@@ -15,8 +15,8 @@ const enlistItems = function(category, user_id) {
     })
     .catch(err => {
       console.log(err.message);
-    })
-}
+    });
+};
 //add a new Item to the category with respect to the user_id
 //INSERT INTO queries (category,item, user_id) VALUES ('Restaurant', 'Salad', 1),
 const addNewItem = function(category, item, user_id) {
@@ -27,14 +27,14 @@ const addNewItem = function(category, item, user_id) {
   RETURNING *`;
 
   return db.query(queryString, values)
-          .then((data) => {
-            const item = data.rows[0];
-            return item;
-          })
-          .catch((err) => {
-            console.log(err.message);
-          })
-}
+    .then((data) => {
+      const item = data.rows[0];
+      return item;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
 //modify the category to the already added item: edit the category or delete the item
 const updateCategory = function(category, id) {
   const values = [category, id];
@@ -44,33 +44,33 @@ const updateCategory = function(category, id) {
   WHERE queries.id = $2
   RETURNING *`;
 
-  return db.query( queryString, values )
-          .then((data) => {
-            const category = data.rows[0]
-            return category;
-          })
-          .catch((err) => {
-            console.log(err.message);
-          })
+  return db.query(queryString, values)
+    .then((data) => {
+      const category = data.rows[0];
+      return category;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 
-}
+};
 //delete an item from the list
 
-const deleteAnItem = function (id){
+const deleteAnItem = function(id) {
   const values = [id];
-  const queryString =`
+  const queryString = `
   DELETE FROM queries
   WHERE id = $1`;
 
   return db.query(queryString, values)
-          .then((data) => {
-            const item = data.rows[0]
-            return item;
-          })
-          .catch((err) => {
-            console.log(err.message);
-          })
-}
+    .then((data) => {
+      const item = data.rows[0];
+      return item;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
 
 
-module.exports = { enlistItems, addNewItem, updateCategory, deleteAnItem }
+module.exports = { enlistItems, addNewItem, updateCategory, deleteAnItem };
