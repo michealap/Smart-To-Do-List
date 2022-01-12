@@ -8,14 +8,14 @@ module.exports = (db) => {
   //list of items
   router.get("/", (req, res) => {
     const user_id = req.params.id;
-    const categories = ['restaurants', 'books', 'films', 'products', 'others']
+    const categories = ['restaurants', 'books', 'films', 'products', 'others'];
     let sortedList = [];
-    for(let category of categories){
+    for (let category of categories) {
       sortedList.push(enlistItems(category, user_id));
     }
     Promise.all(sortedList)
       .then(data => {
-        res.json(data)
+        res.json(data);
       }).catch(err => {
         res.status(500).json({ error: err.message });
       });
@@ -30,27 +30,28 @@ module.exports = (db) => {
       `;
     db.query(queryString, [userId])
       .then((data) => {
-        const result = data.rows
+        const result = data.rows;
         res.json(result);
       })
       .catch((err) => {
         res
           .status(500)
           .json({ error: err.message });
-      })
-  })
+      });
+  });
 
   router.post("/", (req, res) => {
     //item or input from the client-side
-    const item = req.body;
-    const id = req.params;
-    console.log("req.body.item-----",item)
-    console.log("id----",id)
+    const item = req.body.item;
+    const id = 1; //set to current db user 1
+    console.log("req.body.item-----",item);
+    console.log("id----",id);
     if (id) {
       //item to be added as a new item
       apiCalls(item)
         .then((category) => {  //const addNewItem = function(category, item, user_id)
-          addNewItem(category, item, id)
+          addNewItem(category, item, id);
+          console.log("item added", category);
         })
         .then(() => {
           res.send(200);
@@ -65,5 +66,5 @@ module.exports = (db) => {
     }
   });
 
-return router;
+  return router;
 };
