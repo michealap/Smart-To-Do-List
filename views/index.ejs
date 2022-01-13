@@ -21,6 +21,13 @@
   <!-- App JS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <!-- inline JS -->
+  <script>
+    $( function() {
+      $( "#sortable" ).sortable();
+    });
+  </script>
 </head>
 
 <body>
@@ -48,28 +55,28 @@
     </div>
     <div class="to-do-container">
       <!-- Food-->
-      <div class="category-box food">
+      <div class="category-box food sortable">
         <div class= "bg"> </div>
         <h3 class="box-name">Food</h3>
         <li id='food'>
         </li>
       </div>
       <!-- Books -->
-      <div class="category-box books">
+      <div class="category-box books sortable">
         <div class= "bg"> </div>
         <h3 class="box-name">Books</h3>
         <li id='book'>
-        </li> 
+        </li>
       </div>
       <!-- Film -->
-      <div class="category-box film">
+      <div class="category-box film sortable">
         <div class= "bg"> </div>
         <h3 class="box-name">Film</h3>
         <li id='film'>
         </li>
       </div>
       <!-- Products-->
-      <div class="category-box products">
+      <div class="category-box products sortable">
         <div class= "bg"> </div>
         <h3 class="box-name">Products</h3>
         <li id='product' >
@@ -77,10 +84,10 @@
       </div>
     </div>
     <!-- Custom list -->
-    <div class="custom-list">
+    <div class="custom-list other">
       <h3 class="box-name">Custom List</h3>
-      <li id='other'>
-      </li>
+      <ul class="sortable" id='other'>
+      </ul>
     </div>
   </div>
   <footer class= "footer">

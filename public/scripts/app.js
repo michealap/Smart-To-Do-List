@@ -4,20 +4,20 @@
   $(document).ready(() => {
     //Value for input
     const $value = $("#search");
-    
+
     //Prevent cross site scripting attacks
     const escape = function(str) {
       let div = document.createElement("div");
       div.appendChild(document.createTextNode(str));
       return div.innerHTML;
     };
-    
+
     //Creates new item elements
     const createNewItem = function(query) {
       const $newItem = $(`
       <li class="item">
-      <input type="checkbox">
-      <span>${escape(query.item)}
+      <input type="checkbox" class="checkbox">
+      <span class="span">${escape(query.item)}
       <button type="submit" class="delete" id="${query.id}">
       <i class="far fa-trash-alt"></i>
       </button>
@@ -26,7 +26,7 @@
       </li>`);
       return $newItem;
     };
-    
+
     //global
     const $eating = $('#food');
     const $reading = $('#book');
@@ -89,7 +89,13 @@
         }
       }
     };
-    
+
+    //Micheala - checkout this possible solution for line-through
+    $("#checkbox").on("click", function(event) {
+      $value = this;
+      $value.sibling("#span").css("text-decoration", "line-through")
+    })
+
     //Gets value for input and sends to /requests - event listener
     $("#search-icon").on('click', function(event) {
       event.preventDefault();
@@ -116,5 +122,37 @@
       $('#value').css('text-decoration','line-through');
     }
   });
-  
+
 })(jQuery);
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  //Changes the opacity of the item when it has been dragged
+  function handleDragStart(event) {
+    this.style.opacity = '0.3';
+    dragSrcEl = this;
+    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.setData('text/html', this.innerHTML);
+  }
+  //Keeps the opacity 1 for the dragged item
+  function handleDragEnd(event) {
+    this.style.opacity = '1';
+  }
+  //While item is being dragged
+  function handleDragOver(event) {
+    if(event.preventDefault) {
+      event.preventDefault();
+    }
+    return false;
+  }
+  function handleDrop(event) {
+    event.stopPropogation();
+    return false;
+  }
+  let items = document.querySelectorAll('.item');
+  items.forEach(function(item) {
+    item.addEventListener('dragstart', handleDragStart);
+    item.addEventListener('dragend', handleDragEnd);
+    item.addEventListener('dragover', handleDragOver);
+    item.addEventListener('drop', handleDrop);
+  })
+})
