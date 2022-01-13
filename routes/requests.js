@@ -17,7 +17,7 @@ module.exports = (db) => {
     }
     Promise.all(sortedList)
       .then(data => {
-        console.log("sorted list----", data)
+        console.log("sorted list----", data);
         res.json(data);
       }).catch(err => {
         res.status(500).json({ error: err.message });
@@ -55,9 +55,7 @@ module.exports = (db) => {
         .then((category) => {  //const addNewItem = function(category, item, user_id)
           addNewItem(category, item, id);
           console.log("item added", category);
-        })
-        .then(() => {
-          res.status(200);
+          res.json(category);
         })
         .catch((err) => {
           res
@@ -75,7 +73,7 @@ module.exports = (db) => {
     const id = req.body.id;
     updateCategory(category, id)
       .then(
-        res.send(200)
+        res.status(200)
       )
       .catch((err) => {
         res
@@ -88,9 +86,14 @@ module.exports = (db) => {
   router.post("/delete", (req, res) => {
     const id = req.body.id;
     deleteAnItem(id)
-      .then(
-        res.send(200)
-      );
+      .then((data) =>{
+        res.json(data); //definitely needed
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
   return router;
 };
