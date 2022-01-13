@@ -8,5 +8,3 @@ INSERT INTO queries (category,item, user_id) VALUES ('food', 'Salad', 1),
 ('film', 'The wasteland', 2),
 ('product','watch', 2),
 ('other', 'eggs', 1);
-
-

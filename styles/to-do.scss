@@ -1,7 +1,7 @@
-$restaurant: url(../rest.jpg);
-$books: url(../booksstack.jpg);
+$food: url(../rest.jpg);
+$book: url(../booksstack.jpg);
 $film: url(../film.png);
-$products: url(../products.jpg);
+$product: url(../products.jpg);
 $other: url(../thinkbubble.jpg);
 
 .todo-box {
@@ -16,6 +16,13 @@ $other: url(../thinkbubble.jpg);
   margin-top: 15%;
   margin-bottom:5%;
   padding-top: 20px;
+  ul li {
+    // background: #E5E5E5;    
+    max-width: 70%;    
+  }
+  input[type=checkbox]:checked + label {
+    text-decoration: line-through;		
+  }
   .center {
     align-items: center;
     padding-bottom: 5px;
@@ -23,8 +30,10 @@ $other: url(../thinkbubble.jpg);
   .to-do-container {
     display: flex;
     width: 90%;
+    height: 200px;
     flex-direction: row;
     justify-content: space-around;
+
   }
   .category-box{
     position: relative;
@@ -56,12 +65,12 @@ $other: url(../thinkbubble.jpg);
     }
     &.food {
       .bg {
-      background-image: $restaurant;
+      background-image: $food;
       }
     }
     &.books {
       .bg {
-      background-image: $books;
+      background-image: $book;
       }
     }
     &.film {
@@ -69,9 +78,9 @@ $other: url(../thinkbubble.jpg);
       background-image: $film;
       }
     }
-    &.products {
+    &.product {
       .bg {
-      background-image: $products;
+      background-image: $product;
       
       }
     }

@@ -11,18 +11,31 @@
       div.appendChild(document.createTextNode(str));
       return div.innerHTML;
     };
+    $(function() {
+      $(".sortable").draggable({
+        accept: ".item"
+
+      });
+      console.log("here in sortable");
+      $(".sortable").droppable({
+        accept: ".item",
+        classes: {
+          "ui-droppable": "highlight"
+        }
+      });
+    });
     
     //Creates new item elements
     const createNewItem = function(query) {
       const $newItem = $(`
       <li class="item">
-      <input type="checkbox">
-      <span>${escape(query.item)}
+      <span>
+      <input type="checkbox" id="item" name="to-do">
+      <label for="to-do">${escape(query.item)}</label>
       <button type="submit" class="delete" id="${query.id}">
       <i class="far fa-trash-alt"></i>
       </button>
       </span>
-      <img>
       </li>`);
       return $newItem;
     };
@@ -33,7 +46,7 @@
     const $watching = $('#film');
     const $buying = $('#product');
     const $othering = $('#other');
-
+    
     //Loads items into the html document
     const loadItems = () => {
       //reloads the category box
@@ -42,7 +55,6 @@
       $watching.empty();
       $buying.empty();
       $othering.empty();
-      console.log("i am here in load items");
       $.ajax({
         method: "GET",
         url: "/api/requests",
@@ -55,7 +67,7 @@
     };
     loadItems();
 
-    $("li").on("click", ".delete", function(event) {
+    $("ul").on("click", ".delete", function(event) {
       event.preventDefault();
       const id = $(this).attr('id');
       console.log("id on click:", id);
@@ -110,11 +122,6 @@
     });
   });
 
-  //strikethrough - added feature
-  $('li').change(function() {
-    if ($('li').prop('checked')) {
-      $('#value').css('text-decoration','line-through');
-    }
-  });
+  
   
 })(jQuery);

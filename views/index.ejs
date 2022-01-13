@@ -21,6 +21,15 @@
   <!-- App JS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/vendor/jquery-ui.js"></script>
+  <!--in-line script-->
+  <script>
+    $( function() {
+      $( "ul" ).draggable();
+      console.log("here in sortable");
+      $("ul").droppable();
+    } );
+  </script>
 </head>
 
 <body>
@@ -40,47 +49,47 @@
     </form>
   </div>
   <!-- Main To-Do -->
-  <div class="todo-box">
+  <div class="todo-box" >
     <!-- Title -->
     <div class="center">
       <h2 class="center">Summer Vacation</h2>
       <img>
     </div>
-    <div class="to-do-container">
+    <div class="to-do-container" id="wrap">
       <!-- Food-->
-      <div class="category-box food">
+      <div class="category-box food tool">
         <div class= "bg"> </div>
         <h3 class="box-name">Food</h3>
-        <li id='food'>
-        </li>
+        <ul class="sortable" id='food'>
+        </ul>
       </div>
       <!-- Books -->
       <div class="category-box books">
         <div class= "bg"> </div>
         <h3 class="box-name">Books</h3>
-        <li id='book'>
-        </li> 
+        <ul id='book' class="sortable">
+        </ul>
       </div>
       <!-- Film -->
       <div class="category-box film">
         <div class= "bg"> </div>
         <h3 class="box-name">Film</h3>
-        <li id='film'>
-        </li>
+        <ul id='film' class="sortable">
+        </ul>
       </div>
       <!-- Products-->
-      <div class="category-box products">
+      <div class="category-box product">
         <div class= "bg"> </div>
         <h3 class="box-name">Products</h3>
-        <li id='product' >
-        </li>
+        <ul id='product'class="sortable">
+        </ul>
       </div>
     </div>
     <!-- Custom list -->
     <div class="custom-list">
       <h3 class="box-name">Custom List</h3>
-      <li id='other'>
-      </li>
+      <ul id='other'class="sortable">
+      </ul>
     </div>
   </div>
   <footer class= "footer">
