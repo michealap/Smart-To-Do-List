@@ -25,9 +25,50 @@
 
 <body>
   <nav>
-    <a class="left-side"><i class="fas fa-user"></i></a>
+    <span class="left-side"><i class="fas fa-user"></i></span>
+      <!-- login form -->
+      <div class="login" id="login">
+        <div class="br"></div>
+        <form  action="/">
+        <p>
+        <h4 class="login">Let me see my list!!</h4>
+        </p>
+        <p>
+          <input type="text" name="email" id="email" placeholder="email"/>
+        </p>
+        <p>
+          <input type="password" name="password" id="password" placeholder="password" />
+        </p>
+        <p>
+          <button type="submit" class="login-button">Login</button>
+        </p>
+      </form>
+      </div>
     <h1 class="nav center">Smart To-Do List</h1>
     <span class="right-side"><i class="fas fa-user-plus"></i></span>
+    <!-- register page -->
+    <div class="update" id="update">
+      <div class="br"></div>
+      <form  action="/">
+        <p>
+        <h4 class="edit">New user</h4>
+        </p>
+        <p>
+          <input type="text" name="name" id="name" placeholder="username">
+        </p>
+        <p>
+          <input type="text" name="email" id="email" placeholder="email">
+        </p>
+        <p>
+          <input type="password" name="password" id="password" placeholder="password">
+        </p>
+        <p>
+          <button type="submit" class="register-button">Submit</button>
+        </p>
+      </form>
+    </div>
+
+
   </nav>
   <div class="search-box">
     <form id="search-form" action="/" method="POST">
