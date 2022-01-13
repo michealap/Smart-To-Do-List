@@ -10,7 +10,7 @@
       div.appendChild(document.createTextNode(str));
       return div.innerHTML;
     };
-    
+
     //Creates new item elements
     const createNewItem = function(query) {
       const $newItem = $(`
@@ -37,7 +37,7 @@
       });
     };
     loadItems();
-    
+
     const renderItems = (list) => {
       // $allItems = $('.item');
       $eating = $('.food');
@@ -51,7 +51,7 @@
       $watching.empty();
       $buying.empty();
       $othering.empty();
-      
+
       for (const item of list) {
         if (item.category === 'food') {
           $eating.append(createNewItem(item));
@@ -66,7 +66,7 @@
         }
       }
     };
-    
+
     //Gets value for input and sends to /requests - event listener
     $("#search-icon").on('click', function(event) {
       event.preventDefault();
@@ -92,12 +92,12 @@
     $(".item").on("click", ".delete", function(event) {
       event.preventDefault();
       const data = loadItems();
-    
+
       $.ajax({
         method: "DELETE",
         url: `/api/requests/${$(this).attr("queryid")}`,
         data: data,
-    
+
         success: function() {
           loadItems();
         },
@@ -114,5 +114,47 @@
       $('#value').css('text-decoration','line-through');
     }
   });
-  
+
+
+
 })(jQuery);
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  //Changes the opacity of the item when it has been dragged
+  function handleDragStart(event) {
+    this.style.opacity = '0.3';
+
+    dragSrcEl = this;
+    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.setData('text/html', this.innerHTML);
+  }
+
+  //Keeps the opacity 1 for the dragged item
+  function handleDragEnd(event) {
+    this.style.opacity = '1';
+  }
+
+  //While item is being dragged
+  function handleDragOver(event) {
+    if(event.preventDefault) {
+      event.preventDefault();
+    }
+    return false;
+  }
+
+  function handleDrop(event) {
+    event.stopPropogation();
+    return false;
+  }
+
+
+
+  let items = document.querySelectorAll('.item');
+  items.forEach(function(item) {
+    item.addEventListener('dragstart', handleDragStart);
+    item.addEventListener('dragend', handleDragEnd);
+    item.addEventListener('dragover', handleDragOver);
+    item.addEventListener('drop', handleDrop);
+  })
+
+})
