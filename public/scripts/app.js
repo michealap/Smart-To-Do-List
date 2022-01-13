@@ -1,3 +1,4 @@
+
 // Client facing scripts here
 (function($) {
   $(document).ready(() => {
@@ -17,42 +18,64 @@
       <li class="item">
       <input type="checkbox">
       <span>${escape(query.item)}
-      <button type="submit" class="delete" queryid="${query.id}>
+      <button type="submit" class="delete" id="${query.id}">
       <i class="far fa-trash-alt"></i>
-        </button>
-        </span>
-        <img>
-        </li>`);
+      </button>
+      </span>
+      <img>
+      </li>`);
       return $newItem;
     };
 
+    //global
+    const $eating = $('#food');
+    const $reading = $('#book');
+    const $watching = $('#film');
+    const $buying = $('#product');
+    const $othering = $('#other');
+
     //Loads items into the html document
     const loadItems = () => {
+      //reloads the category box
+      $eating.empty();
+      $reading.empty();
+      $watching.empty();
+      $buying.empty();
+      $othering.empty();
+      console.log("i am here in load items");
       $.ajax({
         method: "GET",
         url: "/api/requests",
         success: (data) => {
-          renderItems(data);
+          for (let list of data) {
+            renderItems(list);
+          }
         },
       });
     };
     loadItems();
 
-    const renderItems = (list) => {
-      // $allItems = $('.item');
-      $eating = $('.food');
-      $reading = $('.books');
-      $watching = $('.film');
-      $buying = $('.products');
-      $othering = $('.custom-list');
-      //reloads the category box
-      // $allItems.empty();
-      $reading.empty();
-      $watching.empty();
-      $buying.empty();
-      $othering.empty();
+    $("li").on("click", ".delete", function(event) {
+      event.preventDefault();
+      const id = $(this).attr('id');
+      console.log("id on click:", id);
 
-      for (const item of list) {
+      $.ajax({
+        method: "POST",
+        url: "/api/requests/delete",
+        data: {id},
+        success: function() {
+          loadItems();
+        },
+        error: function(err) {
+          console.log("error:", err);
+        },
+      });
+    });
+
+    const renderItems = (list) => {
+      for (let item of list) {
+        console.log("item inside render", item);
         if (item.category === 'food') {
           $eating.append(createNewItem(item));
         } else if (item.category === 'book') {
@@ -71,46 +94,25 @@
     $("#search-icon").on('click', function(event) {
       event.preventDefault();
       const newData = { item: $value.val() };
-      // let data = $value.val();
-      console.log("user input:", newData);
       if ($value.val().length > 0) {
         $.ajax({
           method: "POST",
           url: "/api/requests",
           data: newData,
           success: function() {
-            console.log("inside ajax:", newData);
+            loadItems();
           }
-        })
-          .then(loadItems);
+        });
         $("#search").val('');
       } else {
         console.log("You need to input something!");
       }
     });
-
-    $(".item").on("click", ".delete", function(event) {
-      event.preventDefault();
-      const data = loadItems();
-
-      $.ajax({
-        method: "DELETE",
-        url: `/api/requests/${$(this).attr("queryid")}`,
-        data: data,
-
-        success: function() {
-          loadItems();
-        },
-        error: function(err) {
-          console.log("error:", err);
-        },
-      });
-    });
   });
 
-  //strikethrough
-  $('.custom-list').change(function() {
-    if ($('.custom-list').prop('checked') ) {
+  //strikethrough - added feature
+  $('li').change(function() {
+    if ($('li').prop('checked')) {
       $('#value').css('text-decoration','line-through');
     }
   });
