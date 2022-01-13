@@ -13,8 +13,8 @@ $other: url(../thinkbubble.jpg);
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 180px;
-  margin-bottom: 100px;
+  margin-top: 15%;
+  margin-bottom:5%;
   padding-top: 20px;
   .center {
     align-items: center;
@@ -35,17 +35,22 @@ $other: url(../thinkbubble.jpg);
       text-align: center;
       visibility: hidden;
     }
-    .item {
+    li {
+      list-style-type: none;
       text-align: center;
       visibility: hidden;
-      margin-bottom: 20px;
+      margin-bottom: 3%;
+    }
+    .delete {
+      border: none;
+      background: #DBD9CA;
     }
     .bg {
       position:absolute;
       width: 100%;
       height: 100%;
       background-size: cover;
-      border-radius: 10px;  
+      border-radius: 10px;
       transition: opacity 1.5s;
       z-index: 1;
     }
@@ -67,7 +72,7 @@ $other: url(../thinkbubble.jpg);
     &.products {
       .bg {
       background-image: $products;
-      
+
       }
     }
     &:hover {
@@ -81,13 +86,16 @@ $other: url(../thinkbubble.jpg);
       }
       .item {
         position: relative;
-        visibility:visible;        
-      }    
-    } 
+        visibility:visible;
+      }
+      .delete {
+        background: none;
+      }
+    }
   }
   .custom-list {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 5%;
+    margin-bottom: 5%;
     border: 1px solid black;
     border-radius: 10px;
     width: 90%;
@@ -95,13 +103,19 @@ $other: url(../thinkbubble.jpg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position:right;
-    
+
     h3 {
       text-align: center;
     }
-    .item {
-      text-align: center;
-      margin-bottom: 20px;
+    li {
+      list-style-type: none;
+      //text-align: left;
+      margin-left: 3%;
+      margin-bottom: 3%;
+    }
+    .delete {
+      background: none;
+      border: none;
     }
   }
 }
