@@ -6,7 +6,7 @@ INSERT INTO queries (category,item, user_id) VALUES ('food', 'Salad', 1),
 ('food', 'Pizza', 2),
 ('book', 'Don Quixote', 2),
 ('film', 'The wasteland', 2),
-('product','watch', 2),
+('product','watch', 1),
 ('other', 'eggs', 1);
 
 

@@ -1,7 +1,7 @@
 const db = require('../db/dbSetUp');
 
 //enlist the items- grouping by the given category and user_id
-const enlistItems = function(category, user_id) {
+const enlistItems = function(category, user_id = 1) {
   const values = [category, user_id];
   let queryString = `
   SELECT * FROM queries
@@ -19,7 +19,7 @@ const enlistItems = function(category, user_id) {
 };
 //add a new Item to the category with respect to the user_id
 //INSERT INTO queries (category,item, user_id) VALUES ('food', 'Salad', 1),
-const addNewItem = function(category, item, user_id) {
+const addNewItem = function(category, item, user_id = 1) {
   const values = [category, item, user_id];
   let queryString = `
   INSERT INTO queries(category,item, user_id)
@@ -66,9 +66,9 @@ const deleteAnItem = function(id) {
 
   return db.query(queryString, values)
     .then((data) => {
-      console.log("inside delete function", data);
+      //console.log("inside delete function", data);
       const item = data.rows[0];
-      console.log("inside function, item", item);
+      //console.log("inside function, item", item);
       return item;
     })
     .catch((err) => {

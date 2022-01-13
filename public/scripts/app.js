@@ -4,14 +4,33 @@
   $(document).ready(() => {
     //Value for input
     const $value = $("#search");
-    
+
     //Prevent cross site scripting attacks
     const escape = function(str) {
       let div = document.createElement("div");
       div.appendChild(document.createTextNode(str));
       return div.innerHTML;
     };
-    
+
+    //append new form to the nav parent and class = right-side
+  const $updateProfile = $(".right-side")
+  $updateProfile.on('click', function(event) {
+    event.preventDefault();
+    $(".update").show();
+    $(".search-box").fadeOut("slow");
+    $(".todo-box").fadeTo("slow", 0.5);
+  });
+
+    //login the existing user
+    const $login = $(".left-side")
+
+  $login.on('click', function(event) {
+    //event.preventDefault();
+    $(".login").show();
+    $(".search-box").fadeOut("slow")
+     $(".todo-box").fadeTo("slow", 0.5);
+  });
+
     //Creates new item elements
     const createNewItem = function(query) {
       const $newItem = $(`
@@ -26,7 +45,7 @@
       </li>`);
       return $newItem;
     };
-    
+
     //global
     const $eating = $('#food');
     const $reading = $('#book');
@@ -89,7 +108,7 @@
         }
       }
     };
-    
+
     //Gets value for input and sends to /requests - event listener
     $("#search-icon").on('click', function(event) {
       event.preventDefault();
@@ -116,5 +135,5 @@
       $('#value').css('text-decoration','line-through');
     }
   });
-  
+
 })(jQuery);

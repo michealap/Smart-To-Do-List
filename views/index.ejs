@@ -25,18 +25,59 @@
 
 <body>
   <nav>
-    <a href="#" class="left-side"><i class="fas fa-user"></i></a>
+    <span class="left-side"><i class="fas fa-user"></i></span>
+      <!-- login form -->
+      <div class="login" id="login">
+        <div class="br"></div>
+        <form  action="/">
+        <p>
+        <h4 class="login">Let me see my list!!</h4>
+        </p>
+        <p>
+          <input type="text" name="email" id="email" placeholder="email"/>
+        </p>
+        <p>
+          <input type="password" name="password" id="password" placeholder="password" />
+        </p>
+        <p>
+          <button type="submit" class="login-button">Login</button>
+        </p>
+      </form>
+      </div>
     <h1 class="nav center">Smart To-Do List</h1>
-    <a href="#" class="right-side"><i class="fas fa-user-plus"></i></a>
+    <span class="right-side"><i class="fas fa-user-plus"></i></span>
+    <!-- register page -->
+    <div class="update" id="update">
+      <div class="br"></div>
+      <form  action="/">
+        <p>
+        <h4 class="edit">New user</h4>
+        </p>
+        <p>
+          <input type="text" name="name" id="name" placeholder="username">
+        </p>
+        <p>
+          <input type="text" name="email" id="email" placeholder="email">
+        </p>
+        <p>
+          <input type="password" name="password" id="password" placeholder="password">
+        </p>
+        <p>
+          <button type="submit" class="register-button">Submit</button>
+        </p>
+      </form>
+    </div>
+
+
   </nav>
   <div class="search-box">
     <form id="search-form" action="/" method="POST">
       <div id="input-group">
-      <input type="text" id="search" placeholder="What do you need to do?">
-      <button type="submit" id="search-icon">
-        <i class="fas fa-search-plus"></i>
-      </button>
-    </div>
+        <input type="text" id="search" placeholder="What do you need to do?">
+        <button type="submit" id="search-icon">
+          <i class="fas fa-search-plus"></i>
+        </button>
+      </div>
     </form>
   </div>
   <!-- Main To-Do -->
@@ -49,30 +90,30 @@
     <div class="to-do-container">
       <!-- Food-->
       <div class="category-box food">
-        <div class= "bg"> </div>
+        <div class="bg"> </div>
         <h3 class="box-name">Food</h3>
         <li id='food'>
         </li>
       </div>
       <!-- Books -->
       <div class="category-box books">
-        <div class= "bg"> </div>
+        <div class="bg"> </div>
         <h3 class="box-name">Books</h3>
         <li id='book'>
-        </li> 
+        </li>
       </div>
       <!-- Film -->
       <div class="category-box film">
-        <div class= "bg"> </div>
+        <div class="bg"> </div>
         <h3 class="box-name">Film</h3>
         <li id='film'>
         </li>
       </div>
       <!-- Products-->
       <div class="category-box products">
-        <div class= "bg"> </div>
+        <div class="bg"> </div>
         <h3 class="box-name">Products</h3>
-        <li id='product' >
+        <li id='product'>
         </li>
       </div>
     </div>
@@ -83,12 +124,12 @@
       </li>
     </div>
   </div>
-  <footer class= "footer">
+  <footer class="footer">
     <p class="copyright">&copy; 2022
-      <br/>
-    <i class="far fa-thumbs-up"></i>
-    <i class="fab fa-twitter"></i>
-    <i class="fas fa-share"></i>
+      <br />
+      <i class="far fa-thumbs-up"></i>
+      <i class="fab fa-twitter"></i>
+      <i class="fas fa-share"></i>
     </p>
   </footer>
 
