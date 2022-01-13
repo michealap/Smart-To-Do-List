@@ -13,37 +13,22 @@
     };
 
     //append new form to the nav parent and class = right-side
-    const $updateProfile = $(".right-side")
-
-    const $updateProfileForm = $(`
-    <div class="update" id="update">
-    <div class="br"></div>
-    <form method="UPDATE" action="users" id="update-profile">
-    <p>
-    <h3 class="edit">Update My Profile</h3>
-    </p>
-    <p>
-    <label for="email">email:</label>
-    </p>
-    <p>
-      <input name="email" id="email" />
-    </p>
-    <label for="password">password:</label>
-    <p>
-      <input name="password" id="password" />
-    </p>
-    <p>
-      <button type="submit" class="edit-button">Submit</button>
-    </p>
-  </form>
-  </div>`)
-
+  const $updateProfile = $(".right-side")
   $updateProfile.on('click', function(event) {
-    //event.preventDefault();
-    $updateProfile.append($updateProfileForm);
-    $(".search-box").fadeOut("slow")
-    $(".todo-box").fadeOut("slow");
+    event.preventDefault();
+    $(".update").show();
+    $(".search-box").fadeOut("slow");
+    $(".todo-box").fadeTo("slow", 0.5);
+  });
 
+    //login the existing user
+    const $login = $(".left-side")
+
+  $login.on('click', function(event) {
+    //event.preventDefault();
+    $(".login").show();
+    $(".search-box").fadeOut("slow")
+     $(".todo-box").fadeTo("slow", 0.5);
   });
 
     //Creates new item elements
