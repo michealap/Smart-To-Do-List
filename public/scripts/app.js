@@ -4,14 +4,14 @@
   $(document).ready(() => {
     //Value for input
     const $value = $("#search");
-    
+
     //Prevent cross site scripting attacks
     const escape = function(str) {
       let div = document.createElement("div");
       div.appendChild(document.createTextNode(str));
       return div.innerHTML;
     };
-    
+
     //Creates new item elements
     const createNewItem = function(query) {
       const $newItem = $(`
@@ -26,7 +26,7 @@
       </li>`);
       return $newItem;
     };
-    
+
     //global
     const $eating = $('#food');
     const $reading = $('#book');
@@ -34,22 +34,6 @@
     const $buying = $('#product');
     const $othering = $('#other');
 
-<<<<<<< HEAD
-  //Creates new item elements
-  const createNewItem = function(query) {
-    const newItem = $(`<button type="submit" id=${query.id} class="delete">
-    <i class="far fa-trash-alt"></i></button>
-    <li>${query.item}
-    </li>`);
-    return newItem;
-  }
-
-  //Gets value for input and sends to /requests
-  $("#search").on('click', function(event) {
-    event.preventDefault();
-    const newData = { item: $value.val() };
-    if ($value.val().length > 0) {
-=======
     //Loads items into the html document
     const loadItems = () => {
       //reloads the category box
@@ -59,7 +43,6 @@
       $buying.empty();
       $othering.empty();
       console.log("i am here in load items");
->>>>>>> dfe9f5200eab7ddaede15d4b04ef15951aba0a58
       $.ajax({
         method: "GET",
         url: "/api/requests",
@@ -106,7 +89,7 @@
         }
       }
     };
-    
+
     //Gets value for input and sends to /requests - event listener
     $("#search-icon").on('click', function(event) {
       event.preventDefault();
@@ -133,5 +116,5 @@
       $('#value').css('text-decoration','line-through');
     }
   });
-  
+
 })(jQuery);
