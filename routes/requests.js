@@ -23,7 +23,7 @@ module.exports = (db) => {
   });
 
    //add a new user
-   router.get("/login", (req, res) => {
+   router.get("/register", (req, res) => {
     const { name, email, password } = req.body;
 
     const values = [name, email, password];
