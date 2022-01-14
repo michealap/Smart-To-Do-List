@@ -1,8 +1,11 @@
-# Smarties - To-Do_List
+## Smarties - To-Do_List
+An autocategorizing SPA with hover animation. User enters a task and the API does the work 99% of the time. 
+For that 1%, there are draggable list items. 
+
 ### Log In View
 !["Screenshot of logged in user"](https://github.com/michealap/Smart-To-Do-List/blob/master/docs/checked.png)
 
-## Getting Started
+### Getting Started
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
 2. Update the .env file with your correct local information 
   - username: `labber` 
@@ -23,7 +26,8 @@
 
 ### Log Out View
 !["Screenshot of logged out user"](https://github.com/michealap/Smart-To-Do-List/blob/master/docs/loggedout.png)
-## Dependencies
+
+### Dependencies
 
 - Node 10.x or above
 - NPM 5.x or above
