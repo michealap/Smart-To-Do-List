@@ -22,7 +22,7 @@
 !["Screenshot of form verify"](https://github.com/michealap/Smart-To-Do-List/blob/master/docs/formVerify.png)
 
 ### Log Out View
-!["Screenshot of logged out user"](https://github.com/michealap/Smart-To-Do-List/blob/master/loggedout.png)
+!["Screenshot of logged out user"](https://github.com/michealap/Smart-To-Do-List/blob/master/docs/loggedout.png)
 ## Dependencies
 
 - Node 10.x or above
