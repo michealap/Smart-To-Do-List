@@ -23,6 +23,11 @@ $other: url(../thinkbubble.jpg);
   input[type=checkbox]:checked + label {
     text-decoration: line-through;		
   }
+  h2 {
+    border: none;
+    background: #DBD9CA;
+    background: transparent;
+  }
   .center {
     align-items: center;
     padding-bottom: 5px;
@@ -68,7 +73,7 @@ $other: url(../thinkbubble.jpg);
       background-image: $food;
       }
     }
-    &.books {
+    &.book {
       .bg {
       background-image: $book;
       }

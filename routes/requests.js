@@ -7,13 +7,10 @@ const { enlistItems, addNewItem, updateCategory, deleteAnItem } = require('./dat
 module.exports = (db) => {
   //list of items
   router.get("/", (req, res) => {
-    const user_id = 1; //hard-coded for a while-- should fetch id from req.params.id
     const categories = ['food', 'book', 'film', 'product', 'other'];
-
     let sortedList = [];
     for (let category of categories) {
-      sortedList.push(enlistItems(category, user_id));
-
+      sortedList.push(enlistItems(category, user_id = 1));
     }
     Promise.all(sortedList)
       .then(data => {
@@ -24,8 +21,31 @@ module.exports = (db) => {
       });
   });
 
+  //add a new user
+  router.post("/register", (req, res) => {
+    const { name, email, password } = req.body;
+    const values = [name, email, password];
+    const queryString = `
+    INSERT INTO users(name, email, password)
+    VALUES($1, $2, $3)
+    RETURNING *`;
+    db.query(queryString, values)
+      .then((data) => {
+        //const result = data.rows[0];
+        res.status(200).end();
+        //res.json(result);
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+    res.redirect("/");
+  });
+
+
   //get the queries with the given user_id
-  router.get("/:id", (req, res) => {
+  router.get("/login/:id", (req, res) => {
     const user_id = req.params.id;
     console.log(user_id);
     const queryString = `
@@ -43,30 +63,32 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/login", (req, res) => {
+    req.session.user_id = 1; //hard-coding logged in user_id to be 1
+    res.status(200).end();
+  });
+
   router.post("/", (req, res) => {
     //item or input from the client-side
     const item = req.body.item;
-    const id = 1; //set to current db user 1
-    console.log("req.body.item-----",item);
-    console.log("id----",id);
-    if (id) {
-      //item to be added as a new item
-      apiCalls(item)
-        .then((category) => {  //const addNewItem = function(category, item, user_id)
-          addNewItem(category, item, id);
-          console.log("item added", category);
-          res.json(category);
-        })
-        .catch((err) => {
-          res
-            .status(500)
-            .json({ error: err.message });
-        });
-    } else {
-      res.status(403);
-    }
+    apiCalls(item)
+      .then((category) => {  //addNewItem = function(category, item, user_id)
+        addNewItem(category, item, req.session.user_id);
+        console.log("item added", category);
+        res.json(category);
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
   
+  router.post("/logout", (req, res) => {
+    req.session = null;
+    res.status(200).end();
+  });
+
   //update category of the item
   router.post("/update", (req, res) => {
     const category = req.body.category;
