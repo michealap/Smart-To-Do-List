@@ -11,7 +11,6 @@ module.exports = (db) => {
     let sortedList = [];
     for (let category of categories) {
       sortedList.push(enlistItems(category, user_id = 1));
-
     }
     Promise.all(sortedList)
       .then(data => {
@@ -22,25 +21,26 @@ module.exports = (db) => {
       });
   });
 
-   //add a new user
-   router.get("/register", (req, res) => {
+  //add a new user
+  router.post("/register", (req, res) => {
     const { name, email, password } = req.body;
-
     const values = [name, email, password];
     const queryString = `
-    INSERT INTO queries(name, email, password)
+    INSERT INTO users(name, email, password)
     VALUES($1, $2, $3)
     RETURNING *`;
-    db.query(queryString, [user_id])
+    db.query(queryString, values)
       .then((data) => {
-        const result = data.rows[0];
-        res.json(result);
+        //const result = data.rows[0];
+        res.status(200).end();
+        //res.json(result);
       })
       .catch((err) => {
         res
           .status(500)
           .json({ error: err.message });
       });
+    res.redirect("/");
   });
 
 
@@ -63,20 +63,30 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/login", (req, res) => {
+    req.session.user_id = 1; //hard-coding logged in user_id to be 1
+    res.status(200).end();
+  });
+
   router.post("/", (req, res) => {
     //item or input from the client-side
     const item = req.body.item;
-      apiCalls(item)
-        .then((category) => {  //addNewItem = function(category, item, user_id)
-          addNewItem(category, item, user_id);
-          console.log("item added", category);
-          res.json(category);
-        })
-        .catch((err) => {
-          res
-            .status(500)
-            .json({ error: err.message });
-        });
+    apiCalls(item)
+      .then((category) => {  //addNewItem = function(category, item, user_id)
+        addNewItem(category, item, req.session.user_id);
+        console.log("item added", category);
+        res.json(category);
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+  
+  router.post("/logout", (req, res) => {
+    req.session = null;
+    res.status(200).end();
   });
 
   //update category of the item

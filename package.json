@@ -13,7 +13,9 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
     "chalk": "^2.4.2",
+    "cookie-session": "^2.0.0",
     "dotenv": "^2.0.0",
     "ejs": "^2.7.4",
     "express": "^4.17.2",
@@ -21,8 +23,7 @@
     "pg": "^8.7.1",
     "pg-native": "^3.0.0",
     "psql": "0.0.1",
-    "sass": "^1.47.0",
-    "wolfram-alpha-api": "https://products.wolframalpha.com/api/libraries/javascript/wolfram-alpha-api-1.0.0-rc.1.tgz"
+    "sass": "^1.47.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

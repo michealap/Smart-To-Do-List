@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home page</title>
+  <title>Smarties - Home</title>
   <!-- App CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -21,20 +21,34 @@
   <!-- App JS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/vendor/jquery-ui.js"></script>
+  <!--in-line script-->
+  <script>
+    $(function () {
+      $("ul").draggable({
+        snap: true,
+        cursor: "move",
+        revert: "valid"
+      });
+      $('.dropTarget').droppable({
+        snap: true
+      });
+    });
+  </script>
 </head>
 
 <body>
   <nav>
-    <span class="left-side"><i class="fas fa-user"></i></span>
-      <!-- login form -->
-      <div class="login" id="login">
-        <div class="br"></div>
-        <form  action="/">
+    <span class="left-side" id="username"><i class="fas fa-user"></i></span>
+    <!-- Login form -->
+    <div class="login">
+      <div class="br"></div>
+      <form method="POST" action="/api/requests" id="login">
         <p>
         <h4 class="login">Let me see my list!!</h4>
         </p>
         <p>
-          <input type="text" name="email" id="email" placeholder="email"/>
+          <input type="text" name="email" id="email" placeholder="email" />
         </p>
         <p>
           <input type="password" name="password" id="password" placeholder="password" />
@@ -43,37 +57,37 @@
           <button type="submit" class="login-button">Login</button>
         </p>
       </form>
-      </div>
+    </div>
     <h1 class="nav center">Smart To-Do List</h1>
-    <span class="right-side"><i class="fas fa-user-plus"></i></span>
-    <!-- register page -->
-    <div class="update" id="update">
-      <div class="br"></div>
-      <form  action="/">
+    <span class="right-side" id="new"><i class="fas fa-user-plus"></i></span>
+    <span class="right-side" id="logout"><i class="fas fa-sign-out-alt"></i></span>
+    <!-- Register form -->
+    <div class="register" id="register">
+      <form class="br" method="POST" action="/api/requests/register" id="register">
         <p>
         <h4 class="edit">New user</h4>
         </p>
         <p>
-          <input type="text" name="name" id="name" placeholder="username">
+          <input type="text" name="name" id="name" placeholder="username" required>
         </p>
         <p>
-          <input type="text" name="email" id="email" placeholder="email">
+          <input type="text" name="email" id="new-email" placeholder="email" required>
         </p>
         <p>
-          <input type="password" name="password" id="password" placeholder="password">
+          <input type="password" name="password" id="new-password" placeholder="password" required>
         </p>
         <p>
           <button type="submit" class="register-button">Submit</button>
         </p>
       </form>
     </div>
-
-
   </nav>
+  <!-- Search bar -->
   <div class="search-box">
+    <div class="error"></div>
     <form id="search-form" action="/" method="POST">
       <div id="input-group">
-        <input type="text" id="search" placeholder="What do you need to do?">
+        <input type="text" id="search" placeholder="What do you need to do?" required>
         <button type="submit" id="search-icon">
           <i class="fas fa-search-plus"></i>
         </button>
@@ -84,7 +98,7 @@
   <div class="todo-box">
     <!-- Title -->
     <div class="center">
-      <h2 class="center">Summer Vacation</h2>
+      <h2 class="center">My List</h2>
       <img>
     </div>
     <div class="to-do-container">
@@ -92,36 +106,36 @@
       <div class="category-box food">
         <div class="bg"> </div>
         <h3 class="box-name">Food</h3>
-        <li id='food'>
-        </li>
+        <ul class="sortable dropTarget" id='food'>
+        </ul>
       </div>
       <!-- Books -->
-      <div class="category-box books">
+      <div class="category-box book">
         <div class="bg"> </div>
         <h3 class="box-name">Books</h3>
-        <li id='book'>
-        </li>
+        <ul id='book' class="sortable dropTarget">
+        </ul>
       </div>
       <!-- Film -->
       <div class="category-box film">
         <div class="bg"> </div>
         <h3 class="box-name">Film</h3>
-        <li id='film'>
-        </li>
+        <ul id='film' class="dropTarget">
+        </ul>
       </div>
       <!-- Products-->
-      <div class="category-box products">
+      <div class="category-box product">
         <div class="bg"> </div>
         <h3 class="box-name">Products</h3>
-        <li id='product'>
-        </li>
+        <ul id='product' class="sortable dropTarget">
+        </ul>
       </div>
     </div>
     <!-- Custom list -->
     <div class="custom-list">
       <h3 class="box-name">Custom List</h3>
-      <li id='other'>
-      </li>
+      <ul id='other' class="sortable dropTarget">
+      </ul>
     </div>
   </div>
   <footer class="footer">
@@ -132,7 +146,5 @@
       <i class="fas fa-share"></i>
     </p>
   </footer>
-
 </body>
-
 </html>

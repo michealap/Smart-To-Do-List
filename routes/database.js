@@ -18,7 +18,7 @@ const enlistItems = function(category, user_id = 1) {
     });
 };
 //add a new Item to the category with respect to the user_id
-//INSERT INTO queries (category,item, user_id) VALUES ('food', 'Salad', 1),
+//INSERT INTO queries (category,item, user_id) VALUES ('food', 'Salad King', 1),
 const addNewItem = function(category, item, user_id = 1) {
   const values = [category, item, user_id];
   let queryString = `
@@ -57,7 +57,7 @@ const updateCategory = function(category, id) {
 
 //delete an item from the list
 const deleteAnItem = function(id) {
-  console.log("id from db:", id);
+  //console.log("id from db:", id);
   const values = [id];
   const queryString = `
   DELETE FROM queries
@@ -66,9 +66,7 @@ const deleteAnItem = function(id) {
 
   return db.query(queryString, values)
     .then((data) => {
-      //console.log("inside delete function", data);
       const item = data.rows[0];
-      //console.log("inside function, item", item);
       return item;
     })
     .catch((err) => {

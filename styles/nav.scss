@@ -17,8 +17,10 @@ nav {
   .br{
     margin-top:8em;
   }
-  .update, .login{
+  .register, .login{
     display: none;
   }
-
+  #logout {
+    display: none;
+  }
 }
