@@ -1,4 +1,3 @@
-
 // Client facing scripts here
 (function($) {
   $(document).ready(() => {
@@ -136,8 +135,8 @@
         url: "/",
         data: data,
         success: function() {
-          alert("Please login");
           $('#register').slideUp();
+          alert("Please login");
         },
         error: function(err) {
           alert("Please fill in registration details");

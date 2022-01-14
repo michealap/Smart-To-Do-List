@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home page</title>
+  <title>Smarties - Home</title>
   <!-- App CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -25,14 +25,13 @@
   <!--in-line script-->
   <script>
     $(function () {
-      // $(".sortable").sortable();
-      $("ul").draggable();
-      //$("div").droppable();
+      $("ul").draggable({
+        snap: true,
+        cursor: "move",
+        revert: "valid"
+      });
       $('.dropTarget').droppable({
-        drop: function (ev, ui) {
-          $(this).addClass('no-hover');
-          $(ui.draggable).detach().css({ top: 0, left: 0 }).appendTo(this);
-        }
+        snap: true
       });
     });
   </script>
